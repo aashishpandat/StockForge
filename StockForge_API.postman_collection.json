@@ -14,7 +14,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"name\": \"StockForge Demo\",\r\n  \"email\": \"stockforge.demo01@example.com\",\r\n  \"password\": \"DemoPass123!\"\r\n}",
+          "raw": "{\r\n    \"name\": \"Demo\",\r\n    \"email\": \"stockforge.demo01@example.com\",\r\n    \"password\": \"DemoPass123!\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -22,15 +22,14 @@
           }
         },
         "url": {
-          "raw": "http://127.0.0.1:5000/api/auth/register",
-          "protocol": "http",
+          "raw": "https://stockforge-production-e334.up.railway.app/api/auth/register",
+          "protocol": "https",
           "host": [
-            "127",
-            "0",
-            "0",
-            "1"
+            "stockforge-production-e334",
+            "up",
+            "railway",
+            "app"
           ],
-          "port": "5000",
           "path": [
             "api",
             "auth",
@@ -47,7 +46,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"email\": \"stockforge.demo01@example.com\",\r\n  \"password\": \"DemoPass123!\"\r\n}",
+          "raw": "{\r\n    \"email\": \"stockforge.demo01@example.com\",\r\n    \"password\": \"DemoPass123!\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -55,15 +54,14 @@
           }
         },
         "url": {
-          "raw": "http://127.0.0.1:5000/api/auth/login",
-          "protocol": "http",
+          "raw": "https://stockforge-production-e334.up.railway.app/api/auth/login",
+          "protocol": "https",
           "host": [
-            "127",
-            "0",
-            "0",
-            "1"
+            "stockforge-production-e334",
+            "up",
+            "railway",
+            "app"
           ],
-          "port": "5000",
           "path": [
             "api",
             "auth",
@@ -76,18 +74,36 @@
     {
       "name": "Get Products",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
         "method": "GET",
         "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
         "url": {
-          "raw": "http://127.0.0.1:5000/api/products",
-          "protocol": "http",
+          "raw": "https://stockforge-production-e334.up.railway.app/api/products",
+          "protocol": "https",
           "host": [
-            "127",
-            "0",
-            "0",
-            "1"
+            "stockforge-production-e334",
+            "up",
+            "railway",
+            "app"
           ],
-          "port": "5000",
           "path": [
             "api",
             "products"
@@ -104,7 +120,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "{{json_web_token_0hnn}}",
+              "value": "{{json_web_token_0o49}}",
               "type": "string"
             }
           ]
@@ -113,7 +129,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"name\": \"Laptop Stand\",\r\n  \"description\": \"Adjustable aluminium laptop stand for desk setup\",\r\n  \"price\": \"1199.00\",\r\n  \"stock_quantity\": 20\r\n}",
+          "raw": "{\r\n  \"name\": \"StockForge Wireless Mouse\",\r\n  \"description\": \"Wireless mouse for testing inventory management\",\r\n  \"price\": 799.00,\r\n  \"sku\": \"SF-MOUSE-001\",\r\n  \"quantity\": 25\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -121,15 +137,14 @@
           }
         },
         "url": {
-          "raw": "http://127.0.0.1:5000/api/products",
-          "protocol": "http",
+          "raw": "https://stockforge-production-e334.up.railway.app/api/products",
+          "protocol": "https",
           "host": [
-            "127",
-            "0",
-            "0",
-            "1"
+            "stockforge-production-e334",
+            "up",
+            "railway",
+            "app"
           ],
-          "port": "5000",
           "path": [
             "api",
             "products"
@@ -146,7 +161,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "{{json_web_token_048c}}",
+              "value": "{{json_web_token_188l}}",
               "type": "string"
             }
           ]
@@ -154,15 +169,14 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://127.0.0.1:5000/api/orders",
-          "protocol": "http",
+          "raw": "https://stockforge-production-e334.up.railway.app/api/orders",
+          "protocol": "https",
           "host": [
-            "127",
-            "0",
-            "0",
-            "1"
+            "stockforge-production-e334",
+            "up",
+            "railway",
+            "app"
           ],
-          "port": "5000",
           "path": [
             "api",
             "orders"
@@ -179,7 +193,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "{{json_web_token_00e0}}",
+              "value": "{{json_web_token_188l}}",
               "type": "string"
             }
           ]
@@ -188,7 +202,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"items\": [\r\n    {\r\n      \"product_id\": 1,\r\n      \"quantity\": 2\r\n    },\r\n    {\r\n      \"product_id\": 2,\r\n      \"quantity\": 1\r\n    }\r\n  ]\r\n}",
+          "raw": "{\r\n  \"items\": [\r\n    {\r\n      \"product_id\": 1,\r\n      \"quantity\": 1\r\n    }\r\n  ]\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -196,15 +210,14 @@
           }
         },
         "url": {
-          "raw": "http://127.0.0.1:5000/api/orders",
-          "protocol": "http",
+          "raw": "https://stockforge-production-e334.up.railway.app/api/orders",
+          "protocol": "https",
           "host": [
-            "127",
-            "0",
-            "0",
-            "1"
+            "stockforge-production-e334",
+            "up",
+            "railway",
+            "app"
           ],
-          "port": "5000",
           "path": [
             "api",
             "orders"
@@ -221,7 +234,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "{{json_web_token_00e0}}",
+              "value": "{{json_web_token_188l}}",
               "type": "string"
             }
           ]
@@ -229,19 +242,18 @@
         "method": "PATCH",
         "header": [],
         "url": {
-          "raw": "http://127.0.0.1:5000/api/orders/21/cancel",
-          "protocol": "http",
+          "raw": "https://stockforge-production-e334.up.railway.app/api/orders/1/cancel",
+          "protocol": "https",
           "host": [
-            "127",
-            "0",
-            "0",
-            "1"
+            "stockforge-production-e334",
+            "up",
+            "railway",
+            "app"
           ],
-          "port": "5000",
           "path": [
             "api",
             "orders",
-            "21",
+            "1",
             "cancel"
           ]
         }
@@ -256,7 +268,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "{{json_web_token_112y}}",
+              "value": "{{json_web_token_0o49}}",
               "type": "string"
             }
           ]
@@ -265,7 +277,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"change_quantity\": 5,\r\n  \"reason\": \"Stock replenishment\"\r\n}",
+          "raw": "{\r\n  \"change_quantity\": 25,\r\n  \"reason\": \"Initial stock added for product testing\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -273,15 +285,14 @@
           }
         },
         "url": {
-          "raw": "http://127.0.0.1:5000/api/inventory/1/adjust",
-          "protocol": "http",
+          "raw": "https://stockforge-production-e334.up.railway.app/api/inventory/1/adjust",
+          "protocol": "https",
           "host": [
-            "127",
-            "0",
-            "0",
-            "1"
+            "stockforge-production-e334",
+            "up",
+            "railway",
+            "app"
           ],
-          "port": "5000",
           "path": [
             "api",
             "inventory",
@@ -316,6 +327,18 @@
     },
     {
       "key": "json_web_token_048c",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_0o49",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_188l",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_0f9w",
       "secret": true
     }
   ]
