@@ -122,10 +122,8 @@ StockForge/
 
 ### 1. Clone the Repository
 
-After uploading StockForge to GitHub, replace the placeholder with the actual repository URL.
-
 ```bash
-git clone <your-stockforge-repository-url>
+git clone https://github.com/aashishpandat/StockForge.git
 cd StockForge
 ```
 
