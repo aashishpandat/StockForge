@@ -4,6 +4,19 @@ A RESTful inventory and order management backend API built with Flask and MySQL.
 
 StockForge provides product management, inventory adjustments, order processing, JWT authentication, and role-based access control. The project uses a layered architecture to separate request handling, business logic, database operations, and input validation.
 
+## 🚀 Live Demo
+
+**Base API URL:**  
+https://stockforge-production-e334.up.railway.app
+
+### Health Check
+
+https://stockforge-production-e334.up.railway.app/api/health
+
+### Products API
+
+https://stockforge-production-e334.up.railway.app/api/products
+
 ## Features
 
 - Retrieve available products
@@ -225,6 +238,20 @@ python -m pytest -v
 Import `StockForge_API.postman_collection.json` into Postman to test the API requests.
 
 Test successful operations as well as invalid authentication, insufficient inventory, invalid request data, unauthorized access, order ownership restrictions, and attempts to cancel orders that are no longer pending.
+
+## 🧪 API Testing
+
+The API was tested using Postman for:
+
+- User registration and login
+- JWT authentication
+- Product management
+- Inventory adjustment
+- Order placement
+- Order cancellation
+- Stock validation
+- Role-based access control
+- Error handling and validation
 
 ## Author
 
