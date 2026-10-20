@@ -6,16 +6,10 @@ StockForge provides product management, inventory adjustments, order processing,
 
 ## 🚀 Live Demo
 
-**Base API URL:**  
-https://stockforge-production-e334.up.railway.app
-
-### Health Check
-
-https://stockforge-production-e334.up.railway.app/api/health
-
-### Products API
-
+**Live API:**  
 https://stockforge-production-e334.up.railway.app/api/products
+
+This endpoint demonstrates the deployed StockForge API and returns the available products.
 
 ## Features
 
