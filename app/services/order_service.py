@@ -91,15 +91,21 @@ def cancel_order(order_id, user_id):
         for item in items:
             product = OrderRepository.get_product_for_update(item.product_id)
 
-            if product:
-                product.stock_quantity += item.quantity
+            if not product:
+                OrderRepository.rollback()
+                return None, (
+                    f"Cannot cancel order because product {item.product_id} "
+                    "is missing; inventory was not changed"
+                ), 409
 
-                InventoryRepository.create_movement(
-                    product_id=product.id,
-                    user_id=user_id,
-                    quantity=item.quantity,
-                    reason=f"Cancellation of Order #{order.id}"
-                )
+            product.stock_quantity += item.quantity
+
+            InventoryRepository.create_movement(
+                product_id=product.id,
+                user_id=user_id,
+                quantity=item.quantity,
+                reason=f"Cancellation of Order #{order.id}"
+            )
 
         order.status = "Cancelled"
         OrderRepository.commit()

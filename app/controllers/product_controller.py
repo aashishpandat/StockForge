@@ -55,3 +55,40 @@ class ProductController:
                 "stock_quantity": product.stock_quantity
             }
         }, status_code
+
+
+    @staticmethod
+    def update_product(product_id, data):
+        validated_data, error = ProductValidation.validate_product_update(data)
+        if error:
+            return {"success": False, "message": error}, 400
+
+        product, error, status_code = ProductService.update_product(
+            product_id, validated_data
+        )
+        if error:
+            return {"success": False, "message": error}, status_code
+
+        return {
+            "success": True,
+            "message": "Product updated successfully",
+            "product": {
+                "id": product.id,
+                "name": product.name,
+                "description": product.description,
+                "price": str(product.price),
+                "stock_quantity": product.stock_quantity
+            }
+        }, 200
+
+    @staticmethod
+    def deactivate_product(product_id):
+        product, error, status_code = ProductService.deactivate_product(product_id)
+        if error:
+            return {"success": False, "message": error}, status_code
+
+        return {
+            "success": True,
+            "message": "Product deactivated successfully",
+            "product": {"id": product.id, "is_active": product.is_active}
+        }, 200

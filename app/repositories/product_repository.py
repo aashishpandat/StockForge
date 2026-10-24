@@ -15,6 +15,10 @@ class ProductRepository:
         )
 
     @staticmethod
+    def get_by_id(product_id):
+        return db.session.get(Product, product_id)
+
+    @staticmethod
     def create(product):
         db.session.add(product)
         db.session.flush()

@@ -69,3 +69,22 @@ def test_boolean_price_is_rejected():
 
     assert validated_data is None
     assert error == "A valid price is required"
+
+
+def test_validate_product_update_rejects_stock_edits():
+    from app.validations.product_validation import ProductValidation
+
+    validated, error = ProductValidation.validate_product_update({
+        "stock_quantity": 999
+    })
+    assert validated is None
+    assert "Only name, description and price" in error
+
+
+def test_validate_product_update_accepts_price_only():
+    from decimal import Decimal
+    from app.validations.product_validation import ProductValidation
+
+    validated, error = ProductValidation.validate_product_update({"price": "12.50"})
+    assert error is None
+    assert validated == {"price": Decimal("12.50")}

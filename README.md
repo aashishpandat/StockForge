@@ -45,6 +45,8 @@ This endpoint demonstrates the deployed StockForge API and returns the available
 | POST | `/api/auth/login` | Authenticate a user and obtain a JWT |
 | GET | `/api/products` | Retrieve products |
 | POST | `/api/products` | Create a product (Admin) |
+| PATCH | `/api/products/<product_id>` | Update product name, description or price (Admin) |
+| DELETE | `/api/products/<product_id>` | Deactivate a product without deleting order history (Admin) |
 | PATCH | `/api/inventory/<product_id>/adjust` | Adjust inventory (Admin) |
 | POST | `/api/orders` | Place an order |
 | GET | `/api/orders` | Retrieve orders allowed for the authenticated user |
@@ -196,7 +198,31 @@ Include the token in the `Authorization` header for protected endpoints:
 Authorization: Bearer <your_access_token>
 ```
 
-Administrative endpoints require an account with the appropriate role.
+Administrative endpoints require an account with the appropriate role. Access tokens expire after 15 minutes. Public registration always creates a customer; it never accepts a role from the request body.
+
+## Securely Provisioning an Admin
+
+There is intentionally no public admin-registration endpoint. First register a normal account through `/api/auth/register`, then promote that account through a trusted database administration session. Confirm the email carefully before running the command, and never expose database credentials to the client application.
+
+```sql
+UPDATE users
+SET role = 'admin'
+WHERE email = 'admin@example.com';
+```
+
+Verify that exactly the intended account was updated. If the database schema or table names differ in your environment, inspect them before running the statement. Because role is included in the JWT at login, the promoted user must log in again to receive a token containing the new role. Keep the database admin credentials private and do not add a public API that lets users change their own role.
+
+## Product Administration
+
+- `PATCH /api/products/<product_id>` accepts one or more of `name`, `description`, and `price`. Stock must be changed through the inventory adjustment endpoint so that an inventory movement is recorded.
+- `DELETE /api/products/<product_id>` performs a soft deactivation. It preserves historical order references and removes the product from the public active-product listing. Deactivated products cannot be ordered or adjusted.
+
+## Security Notes
+
+- Access tokens are short-lived (15 minutes); clients should handle `401` responses by requiring a fresh login.
+- There is no token-revocation/logout endpoint yet. A stolen token remains usable until it expires, so use HTTPS and never log or expose tokens.
+- JWT role claims are snapshots taken at login. After an admin role is changed, require a new login; for immediate revocation on role changes, add a database-backed user lookup or token revocation strategy.
+- Debug mode is disabled by default. Set `FLASK_DEBUG=true` only for local development, never in production.
 
 ## Example Request
 

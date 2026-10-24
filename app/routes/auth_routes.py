@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import create_access_token
+import re
 
 from app.extensions import db
 from app.models.user import User
@@ -28,11 +29,14 @@ def register():
     if len(name) > 100 or len(email) > 120:
         return jsonify({"success": False, "message": "Name or email is too long"}), 400
 
-    if "@" not in email or "." not in email.split("@")[-1]:
+    if not re.fullmatch(r"[^@\s]+@[^@\s]+\.[^@\s]+", email):
         return jsonify({"success": False, "message": "Please provide a valid email address"}), 400
 
     if len(password) < 8:
         return jsonify({"success": False, "message": "Password must be at least 8 characters"}), 400
+
+    if len(password) > 128:
+        return jsonify({"success": False, "message": "Password cannot exceed 128 characters"}), 400
 
     if User.query.filter_by(email=email).first():
         return jsonify({"success": False, "message": "Email is already registered"}), 409
